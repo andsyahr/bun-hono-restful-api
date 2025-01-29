@@ -129,14 +129,14 @@ Response Body
       "id": 1,
       "first_name": "Nama Depan",
       "last_name": "Nama Belakang",
-      "email": "eko@gmail.com",
+      "email": "syahrul@gmail.com",
       "phone": "08999999999"
     },
     {
       "id": 2,
       "first_name": "Nama Depan",
-      "last_name": "Nama Belakang",
-      "email": "eko@gmail.com",
+      "last_name": "Nama Belakang", 
+      "email": "syahrul@gmail.com",
       "phone": "08999999999"
     }
   ],
