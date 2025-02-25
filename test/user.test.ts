@@ -1,6 +1,5 @@
 import { describe, it, expect, afterEach, beforeEach } from 'bun:test'
 import app from '../src'
-import { logger } from '../src/application/logging'
 import { UserTest } from './test-utils'
 
 describe('POST /api/users', () => {
@@ -19,7 +18,6 @@ describe('POST /api/users', () => {
     })
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(response.status).toBe(400)
     expect(body.errors).toBeDefined()
@@ -38,7 +36,6 @@ describe('POST /api/users', () => {
     })
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(response.status).toBe(400)
     expect(body.errors).toBeDefined()
@@ -55,7 +52,6 @@ describe('POST /api/users', () => {
     })
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(response.status).toBe(200)
     expect(body.data).toBeDefined()
@@ -211,7 +207,6 @@ describe('PATCH /api/users/current', () => {
     expect(response.status).toBe(200)
 
     const body = await response.json()
-    logger.error(body)
 
     expect(body.data).toBeDefined()
     expect(body.data.name).toBe('andsyahr')
@@ -231,7 +226,6 @@ describe('PATCH /api/users/current', () => {
     expect(response.status).toBe(200)
 
     const body = await response.json()
-    logger.error(body)
 
     expect(body.data).toBeDefined()
     expect(body.data.name).toBe('test')
@@ -268,7 +262,6 @@ describe('DELETE /api/users/current', () => {
     expect(response.status).toBe(200)
 
     const body = await response.json()
-    logger.error(body)
 
     expect(body.data).toBe(true)
   })
@@ -284,7 +277,6 @@ describe('DELETE /api/users/current', () => {
     expect(response.status).toBe(200)
 
     const body = await response.json()
-    logger.error(body)
 
     expect(body.data).toBe(true)
 

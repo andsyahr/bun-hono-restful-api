@@ -1,7 +1,6 @@
 import { describe, it, expect, afterEach, beforeEach } from 'bun:test'
 import { ContactTest, UserTest } from './test-utils'
 import app from '../src'
-import { logger } from '../src/application/logging'
 
 describe('POST /api/contacts', () => {
   beforeEach(async () => {
@@ -28,7 +27,6 @@ describe('POST /api/contacts', () => {
     expect(response.status).toBe(401)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.errors).toBeDefined()
   })
@@ -47,7 +45,6 @@ describe('POST /api/contacts', () => {
     expect(response.status).toBe(400)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.errors).toBeDefined()
   })
@@ -66,7 +63,6 @@ describe('POST /api/contacts', () => {
     expect(response.status).toBe(200)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.data).toBeDefined()
     expect(body.data.first_name).toBe('Andi')
@@ -92,7 +88,6 @@ describe('POST /api/contacts', () => {
     expect(response.status).toBe(200)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.data).toBeDefined()
     expect(body.data.first_name).toBe('Andi')
@@ -127,7 +122,6 @@ describe('GET /api/contacts/{id}', () => {
     expect(response.status).toBe(404)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.errors).toBeDefined()
   })
@@ -145,7 +139,6 @@ describe('GET /api/contacts/{id}', () => {
     expect(response.status).toBe(200)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.data).toBeDefined()
     expect(body.data.first_name).toBe(contact.first_name)
@@ -184,7 +177,6 @@ describe('PUT /api/contacts/{id}', () => {
     expect(response.status).toBe(400)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.errors).toBeDefined()
   })
@@ -205,7 +197,6 @@ describe('PUT /api/contacts/{id}', () => {
     expect(response.status).toBe(404)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.errors).toBeDefined()
   })
@@ -229,7 +220,6 @@ describe('PUT /api/contacts/{id}', () => {
     expect(response.status).toBe(200)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.data).toBeDefined()
     expect(body.data.first_name).toBe('Andi')
@@ -264,7 +254,6 @@ describe('DELETE /api/contacts/{id}', () => {
     expect(response.status).toBe(404)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.errors).toBeDefined()
   })
@@ -282,7 +271,6 @@ describe('DELETE /api/contacts/{id}', () => {
     expect(response.status).toBe(200)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.data).toBe(true)
   })
@@ -311,7 +299,6 @@ describe('GET /api/contacts', () => {
     expect(response.status).toBe(200)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.data).toBeDefined()
     expect(body.data.length).toBe(10)
@@ -331,7 +318,6 @@ describe('GET /api/contacts', () => {
     expect(response.status).toBe(200)
 
     let body = await response.json()
-    logger.debug(body)
 
     expect(body.data).toBeDefined()
     expect(body.data.length).toBe(10)
@@ -349,7 +335,6 @@ describe('GET /api/contacts', () => {
     expect(response.status).toBe(200)
 
     body = await response.json()
-    logger.debug(body)
 
     expect(body.data).toBeDefined()
     expect(body.data.length).toBe(10)
@@ -369,7 +354,6 @@ describe('GET /api/contacts', () => {
     expect(response.status).toBe(200)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.data).toBeDefined()
     expect(body.data.length).toBe(10)
@@ -389,7 +373,6 @@ describe('GET /api/contacts', () => {
     expect(response.status).toBe(200)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.data).toBeDefined()
     expect(body.data.length).toBe(10)
@@ -409,7 +392,6 @@ describe('GET /api/contacts', () => {
     expect(response.status).toBe(200)
 
     let body = await response.json()
-    logger.debug(body)
 
     expect(body.data.length).toBe(0)
     expect(body.paging.current_page).toBe(1)

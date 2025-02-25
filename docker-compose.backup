@@ -1,0 +1,59 @@
+services:
+  mariadb-contact-form:
+    image: mariadb:latest
+    container_name: mariadb-contact-form
+    restart: on-failure
+    env_file:
+      - .env
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    # ports:
+    #   - "${HOST_MARIADB_PORT}:${CONT_MARIADB_PORT}"
+    volumes:
+      - mariadb-contact-form-data:/var/lib/mysql
+    networks:
+      - contact-form-network-database
+
+  # PHPMyAdmin Service
+  phpmyadmin-contact-form:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin-contact-form
+    restart: on-failure
+    environment:
+      - PMA_HOST=mariadb-contact-form
+      - PMA_PORT=${CONT_MARIADB_PORT}
+    env_file:
+      - .env
+    ports:
+      - '${HOST_PHPMYADMIN_PORT}:${CONT_PHPMYADMIN_PORT}'
+    depends_on:
+      - mariadb-contact-form
+    networks:
+      - contact-form-network-database
+
+  # API Contact Form Service
+  api-contact-form:
+    build: .
+    image: api-contact-form:1.0.0
+    container_name: api-contact-form
+    restart: on-failure
+    depends_on:
+      - mariadb-contact-form
+    env_file:
+      - .env
+    ports:
+      - '${HOST_API_PORT}:${CONT_API_PORT}'
+    environment:
+      - DATABASE_URL=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@mariadb-contact-form:3306/${MYSQL_DATABASE}
+    networks:
+      - contact-form-network-database
+
+volumes:
+  mariadb-contact-form-data:
+
+networks:
+  contact-form-network-database:
+    driver: bridge

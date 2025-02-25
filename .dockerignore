@@ -1,0 +1,93 @@
+# Dependencies
+
+node_modules
+.pnp
+.pnp.js
+
+# Testing
+
+coverage
+\*.lcov
+.nyc_output
+
+# Build
+
+dist
+build
+out
+
+# Environment
+
+.env
+.env.*
+!.env.example
+
+# Docker
+
+.dockerignore
+docker-compose*.yml
+Dockerfile*
+
+# Version Control
+
+.git
+.gitignore
+.gitattributes
+.github
+.gitlab-ci.yml
+
+# IDE
+
+.idea
+.vscode
+_.sublime-project
+_.sublime-workspace
+_.suo
+_.ntvs\*
+_.njsproj
+_.sln
+\*.sw?
+
+# Logs
+
+logs
+_.log
+npm-debug.log_
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log\*
+
+# System Files
+
+.DS_Store
+Thumbs.db
+
+# Temp Files
+
+_.tmp
+_.temp
+.cache
+.temp
+
+# Prisma
+
+prisma/_.db
+prisma/migrations
+_.sqlite
+\*.sqlite3
+
+# Development
+
+_.dev._
+README.md
+CHANGELOG.md
+LICENSE
+\*.md
+
+# Testing
+
+**tests**
+test
+tests
+_.test._
+_.spec._

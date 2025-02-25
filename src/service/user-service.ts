@@ -1,3 +1,4 @@
+import { sign } from 'hono/jwt'
 import { User } from '@prisma/client'
 import { prismaClient } from '../application/database'
 import {
@@ -47,6 +48,15 @@ export class UserService {
       }
     })
 
+    const payload = {
+      sub: request.username,
+      role: 'user',
+      exp:
+        Math.floor(Date.now() / 1000) + 60 * 60 * Number(Bun.env.JWT_EXPIRES_IN)
+    }
+
+    const secret = Bun.env.JWT_SECRET!
+
     if (!user) {
       throw new HTTPException(401, {
         message: 'Username or password is invalid'
@@ -70,7 +80,7 @@ export class UserService {
         username: request.username
       },
       data: {
-        token: crypto.randomUUID()
+        token: await sign(payload, secret)
       }
     })
 

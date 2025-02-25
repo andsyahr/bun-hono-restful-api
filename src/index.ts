@@ -1,6 +1,5 @@
 import { Hono } from 'hono'
 import { userController } from './controller/user-controller'
-import { error } from 'winston'
 import { HTTPException } from 'hono/http-exception'
 import { ZodError } from 'zod'
 import { contactController } from './controller/contact-controller'
@@ -9,7 +8,7 @@ import { addressController } from './controller/address-controller'
 const app = new Hono()
 
 app.get('/', (c) => {
-  return c.text('Contacts API v1')
+  return c.json({ message: `Contacts API v1 in ${Bun.env.NODE_ENV}` })
 })
 
 app.route('/', userController)

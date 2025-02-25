@@ -1,7 +1,6 @@
 import { describe, it, expect, afterEach, beforeEach } from 'bun:test'
 import { AddressTest, ContactTest, UserTest } from './test-utils'
 import app from '../src'
-import { logger } from '../src/application/logging'
 
 describe('POST /api/contacts/{id}/addresses', () => {
   beforeEach(async () => {
@@ -38,7 +37,6 @@ describe('POST /api/contacts/{id}/addresses', () => {
     expect(response.status).toBe(400)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.errors).toBeDefined()
   })
@@ -62,7 +60,6 @@ describe('POST /api/contacts/{id}/addresses', () => {
     expect(response.status).toBe(404)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.errors).toBeDefined()
   })
@@ -89,7 +86,6 @@ describe('POST /api/contacts/{id}/addresses', () => {
     expect(response.status).toBe(200)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.data).toBeDefined()
     expect(body.data.id).toBeDefined()
@@ -135,7 +131,6 @@ describe('GET /api/contacts/{contact_id}/addresses/{address_id}', () => {
     expect(response.status).toBe(404)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.errors).toBeDefined()
   })
@@ -157,7 +152,6 @@ describe('GET /api/contacts/{contact_id}/addresses/{address_id}', () => {
     expect(response.status).toBe(200)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.data).toBeDefined()
     expect(body.data.id).toBeDefined()
@@ -207,7 +201,6 @@ describe('PUT /api/contacts/{contact_id}/addresses/{address_id}', () => {
     expect(response.status).toBe(400)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.errors).toBeDefined()
   })
@@ -233,7 +226,6 @@ describe('PUT /api/contacts/{contact_id}/addresses/{address_id}', () => {
     expect(response.status).toBe(404)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.errors).toBeDefined()
   })
@@ -262,7 +254,6 @@ describe('PUT /api/contacts/{contact_id}/addresses/{address_id}', () => {
     expect(response.status).toBe(200)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.data).toBeDefined()
     expect(body.data.id).toBeDefined()
@@ -308,7 +299,6 @@ describe('DELETE /api/contacts/{contact_id}/addresses/{address_id}', () => {
     expect(response.status).toBe(404)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.errors).toBeDefined()
   })
@@ -330,7 +320,6 @@ describe('DELETE /api/contacts/{contact_id}/addresses/{address_id}', () => {
     expect(response.status).toBe(200)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.data).toBeDefined()
     expect(body.data).toBeTrue()
@@ -370,7 +359,6 @@ describe('GET /api/contacts/{contact_id}/addresses', () => {
     expect(response.status).toBe(404)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.errors).toBeDefined()
   })
@@ -392,7 +380,6 @@ describe('GET /api/contacts/{contact_id}/addresses', () => {
     expect(response.status).toBe(200)
 
     const body = await response.json()
-    logger.debug(body)
 
     expect(body.data).toBeDefined()
     expect(body.data.length).toBe(1)

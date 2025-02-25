@@ -1,7 +1,13 @@
 {
   "name": "hono-restful-api",
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "dev": "bun run --hot src/index.ts",
+    "build": "bun build src/index.ts --outfile hono-restful-api --compile",
+    "start": "./hono-restful-api",
+    "db:generate": "bunx prisma generate",
+    "db:migrate": "bunx prisma migrate dev",
+    "db:deploy": "bunx prisma migrate deploy",
+    "db:studio": "bunx prisma studio"
   },
   "dependencies": {
     "@prisma/client": "^6.2.1",
